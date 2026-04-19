@@ -1,4 +1,4 @@
-// 1. Definir la URL base de la API automáticamente
+// URL base de la API 
 const API_URL = "https://pimienton3000-system.onrender.com";
 // REGISTRO
 const formRegistro = document.getElementById("register-form");
@@ -13,7 +13,7 @@ if (formRegistro) {
     if (pass1 !== pass2) return alert("Las contraseñas no coinciden");
 
     try {
-      // Usamos ${API_URL} en lugar de la dirección fija
+      // ${API_URL}  para evitar direccion fija
       const res = await fetch(`${API_URL}/api/registrar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -37,7 +37,6 @@ if (formLogin) {
     const password = formLogin.querySelector('input[name="password-log"]').value;
 
     try {
-      // Usamos ${API_URL} en lugar de la dirección fija
       const res = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
