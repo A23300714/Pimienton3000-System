@@ -1,8 +1,5 @@
 // 1. Definir la URL base de la API automáticamente
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000' 
-    : 'https://tu-app-en-render.onrender.com'; // <-- REEMPLAZA ESTO cuando Render te dé tu URL
-
+const API_URL = "https://pimienton3000-system.onrender.com";
 // REGISTRO
 const formRegistro = document.getElementById("register-form");
 if (formRegistro) {
