@@ -1,0 +1,153 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(34deg, #1c1d6c, #292b91ca, #a82727);
+  font-family: "Orbitron", sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+.device-screen {
+  background: #12121267;
+  width: 90%;
+  height: 90%;
+  border: 4px solid #ae00ff;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  font-size: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #01e6ff;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+}
+
+.security-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.Materiales {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.status-high {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.status-mid {
+  color: #ccff00;
+  font-weight: bold;
+}
+
+.status-low {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.section-title {
+  font-size: 60px;
+  font-weight: 8;
+  margin: 20px 0 10px;
+  text-align: center;
+  color: #01eaff;
+  margin-bottom: 6vh;
+}
+
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 6vh;
+}
+
+.material-col {
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.battery {
+  width: 10vh;
+  height: 20vh;
+  border: 2px solid #555;
+  position: relative;
+  border-radius: 3px;
+  background: #000;
+}
+
+.fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #88ff01, #008cff);
+  transition: height 0.5s ease;
+  /*para altura de baterias 0 a100height: 0%;*/
+}
+
+.btn {
+  cursor: pointer;
+  border: 1px solid #01eaff;
+  background: transparent;
+  color: #01eaff;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Orbitron", sans-serif;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+.action-btn {
+  width: 100%;
+  font-size: 70px;
+  margin-bottom: 40px;
+}
+
+.bottom-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn.small {
+  font-size: 30px;
+  height: auto;
+}
+
+.logout-btn {
+  margin-top: auto;
+  height: auto;
+  width: 100%;
+  border-color: #ff4444;
+  color: #ff4444;
+  font-size: 70px;
+}
+
+.logout-btn:hover {
+  background: #ff4444;
+  color: white;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 60px;
+  cursor: pointer;
+}

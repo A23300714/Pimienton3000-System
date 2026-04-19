@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pimienton3000 - Panel</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="device-screen">
+      <header class="top-bar">
+        <span id="user-display">Bienvenido ツ</span>
+        <button class="icon-btn" onclick="conectar()">📶</button>
+      </header>
+
+      <section class="security-status">
+        <p>Estado de seguridad: <span class="status-high">Alto</span></p>
+      </section>
+      <section class="Materiales">
+        <p>
+          CS: O-clorobencilidenomalononitrilo<br />
+          CN: Cloroacetofenona<br />
+          OC: Oleorresiona de capsicum
+        </p>
+      </section>
+      <h2 class="section-title">Niveles de Material</h2>
+
+      <div class="materials-grid">
+        <div class="material-col">
+          <span class="label">CS</span>
+          <span class="percentage">0%</span>
+          <div class="battery"><div class="fill" id="Cs"></div></div>
+        </div>
+        <div class="material-col">
+          <span class="label">CN</span>
+          <span class="percentage">0%</span>
+          <div class="battery"><div class="fill" id="Cn"></div></div>
+        </div>
+        <div class="material-col">
+          <span class="label">OC</span>
+          <span class="percentage">0%</span>
+          <div class="battery"><div class="fill" id="Oc"></div></div>
+        </div>
+      </div>
+      <button class="btn action-btn" onclick="analisis()">
+        Ejecutar Análisis
+      </button>
+      <div class="bottom-actions">
+        <button class="btn small" onclick="mezclar()">Comenzar Mezcla</button>
+        <button class="btn small" onclick="llenar()">
+          Abrir compuerta para llenar
+        </button>
+      </div>
+      <button class="btn logout-btn" onclick="logout()">Log-Out</button>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>

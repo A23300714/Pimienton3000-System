@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pimienton3000 - Sing-in</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="login-card">
+      <h1
+        style="
+          font-family: &quot;Orbitron&quot;, sans-serif;
+          color: rgb(1, 234, 255);
+          font-size: 20px;
+        "
+      >
+        Crear Cuenta
+      </h1>
+      <form id="register-form">
+        <label>Full Name:</label>
+        <input type="text" name="name" required />
+
+        <label>Email:</label>
+        <input type="email" name="email" required />
+
+        <label>Create Password:</label>
+        <input type="password" name="password" id="pass1" required />
+
+        <label>Confirm Password:</label>
+        <input type="password" name="confirm-password" id="pass2" required />
+        <button type="submit" class="btn">Sign-in</button>
+      </form>
+      <p style="font-size: 12px; margin-top: 15px">
+        You already have an account?
+        <a href="index.html" style="color: #01eaff; text-decoration: none"
+          >Log-in</a
+        >
+      </p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
