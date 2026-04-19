@@ -1,23 +1,25 @@
-//Arduino
-
-//
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path"); // Librería para manejar rutas de archivos
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+// 1. SERVIR ARCHIVOS ESTÁTICOS (HTML, CSS, JS)
+// Esto hace que Render pueda mostrar tu index.html, style.css, etc.
+app.use(express.static(__dirname));
+
+// 2. CONEXIÓN A MONGODB ATLAS
 const MONGO_URI = process.env.MONGO_URI;
-// 1 CONEXIÓN A MONGODB ATLAS
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log("✅ Conectado a MongoDB Atlas con éxito"))
   .catch((err) => console.error("❌ Error de conexión:", err.message));
 
-// 2 MODELOS DE DATOS
+// 3. MODELOS DE DATOS
 const User = mongoose.model(
   "User",
   new mongoose.Schema({
@@ -25,7 +27,7 @@ const User = mongoose.model(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     fecha: { type: Date, default: Date.now },
-  }),
+  })
 );
 
 const Log = mongoose.model(
@@ -35,13 +37,16 @@ const Log = mongoose.model(
     descripcion: String,
     usuario: String,
     fecha: { type: Date, default: Date.now },
-  }),
+  })
 );
 
-// 3 RUTAS
-app.get("/", (req, res) => res.send("Servidor Pimienton3000 activo"));
+// 4. RUTAS DE NAVEGACIÓN
+// Esta es la ruta que Render cargará al entrar al link
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
-// RUTA DE REGISTRO
+// 5. RUTAS DE LA API (REGISTRO Y LOGIN)
 app.post("/api/registrar", async (req, res) => {
   try {
     const nuevoUsuario = new User(req.body);
@@ -50,7 +55,6 @@ app.post("/api/registrar", async (req, res) => {
       evento: "Registro de Usuario",
       descripcion: `Se creó la cuenta de ${nuevoUsuario.nombre}`,
       usuario: nuevoUsuario.email,
-      password: nuevoUsuario.password,
     }).save();
     res.status(201).json({ mensaje: "Usuario registrado con éxito" });
   } catch (error) {
@@ -58,7 +62,6 @@ app.post("/api/registrar", async (req, res) => {
   }
 });
 
-// RUTA DE LOGIN
 app.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -85,10 +88,8 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-//port del servidor
-// Busca donde dice app.listen(3000...) y cámbialo por esto:
+// 6. PUERTO DEL SERVIDOR
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
-    console.log(`Servidor activo en el puerto ${PORT}`);
+  console.log(`🚀 Servidor activo en el puerto ${PORT}`);
 });
