@@ -3,23 +3,19 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path"); // Librería para manejar rutas de archivos
 require("dotenv").config();
-
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-// 1. SERVIR ARCHIVOS ESTÁTICOS (HTML, CSS, JS)
-// Esto hace que Render pueda mostrar tu index.html, style.css, etc.
+// SERVIR ARCHIVOS ESTÁTICOS (HTML, CSS, JS)
 app.use(express.static(__dirname));
-
-// 2. CONEXIÓN A MONGODB ATLAS
+// CONEXIÓN A MONGODB
 const MONGO_URI = process.env.MONGO_URI;
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log("✅ Conectado a MongoDB Atlas con éxito"))
   .catch((err) => console.error("❌ Error de conexión:", err.message));
 
-// 3. MODELOS DE DATOS
+// MODELOS DE DATOS
 const User = mongoose.model(
   "User",
   new mongoose.Schema({
@@ -40,13 +36,13 @@ const Log = mongoose.model(
   })
 );
 
-// 4. RUTAS DE NAVEGACIÓN
-// Esta es la ruta que Render cargará al entrar al link
+// 4RUTAS DE NAVEGACIÓN
+// rtuta para Render cargará al entrar al link
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// 5. RUTAS DE LA API (REGISTRO Y LOGIN)
+// RUTAS DE LA API (REGISTRO Y LOGIN)
 app.post("/api/registrar", async (req, res) => {
   try {
     const nuevoUsuario = new User(req.body);
