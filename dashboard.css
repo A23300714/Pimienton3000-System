@@ -6,7 +6,8 @@ body {
   background: linear-gradient(34deg, #1c1d6c, #292b91ca, #a82727);
   font-family: "Orbitron", sans-serif;
   color: white;
-  overflow: hidden;
+  padding: 10px; 
+  overflow-y: auto;
 }
 
 .device-screen {
