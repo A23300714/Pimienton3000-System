@@ -6,16 +6,16 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-// SERVIR ARCHIVOS ESTÁTICOS (HTML, CSS, JS)
+// archivos estaticoas para web
 app.use(express.static(__dirname));
-// CONEXIÓN A MONGODB
+// conexion a mongo
 const MONGO_URI = process.env.MONGO_URI;
 mongoose
   .connect(MONGO_URI)
-  .then(() => console.log("✅ Conectado a MongoDB Atlas con éxito"))
-  .catch((err) => console.error("❌ Error de conexión:", err.message));
+  .then(() => console.log("Conectado a MongoDBcon éxito"))
+  .catch((err) => console.error("Error de conexión:", err.message));
 
-// MODELOS DE DATOS
+// modelo de datos paraa mongo
 const User = mongoose.model(
   "User",
   new mongoose.Schema({
@@ -36,13 +36,12 @@ const Log = mongoose.model(
   })
 );
 
-// 4RUTAS DE NAVEGACIÓN
 // rtuta para Render cargará al entrar al link
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// RUTAS DE LA API (REGISTRO Y LOGIN)
+// ruta api log y reg
 app.post("/api/registrar", async (req, res) => {
   try {
     const nuevoUsuario = new User(req.body);
@@ -84,8 +83,8 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// 6. PUERTO DEL SERVIDOR
+// server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor activo en el puerto ${PORT}`);
+  console.log(`Servidor activo en el puerto ${PORT}`);
 });
