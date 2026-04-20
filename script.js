@@ -1,6 +1,6 @@
-// URL base de la API 
+//api web
 const API_URL = "https://pimienton3000-system.onrender.com";
-// REGISTRO
+// reg
 const formRegistro = document.getElementById("register-form");
 if (formRegistro) {
   formRegistro.addEventListener("submit", async (e) => {
@@ -28,7 +28,7 @@ if (formRegistro) {
   });
 }
 
-// LOGIN
+// login
 const formLogin = document.getElementById("login-form");
 if (formLogin) {
   formLogin.addEventListener("submit", async (e) => {
@@ -49,7 +49,7 @@ if (formLogin) {
         localStorage.setItem("usuarioNombre", data.usuario.nombre);
         window.location.href = "dashboard.html";
       } else {
-        alert("❌" + data.error);
+        alert("X" + data.error);
       }
     } catch (err) {
       alert("Error de conexión con el servidor");
