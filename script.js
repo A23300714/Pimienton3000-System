@@ -49,7 +49,7 @@ if (formLogin) {
         localStorage.setItem("usuarioNombre", data.usuario.nombre);
         window.location.href = "dashboard.html";
       } else {
-        alert("X " + data.error);
+        alert(data.error);
       }
     } catch (err) {
       alert("Error de conexión con el servidor");
