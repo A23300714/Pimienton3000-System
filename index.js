@@ -12,11 +12,16 @@ app.use(cors({
 }));
 // Configuración gmail
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587, 
+  secure: false, 
   auth: {
-    user: "a23300714@ceti.mx", 
-    pass: process.env.GMAIL_APP_PASS, 
+    user: "a23300714@ceti.mx",
+    pass: process.env.GMAIL_APP_PASS,
   },
+  tls: {
+    rejectUnauthorized: false 
+  }
 });
 //enviar correos
 // Función optimizada para enviar la alerta
@@ -130,7 +135,7 @@ app.post("/api/login", async (req, res) => {
 
     //correo enviado
     enviarCorreoLogin(usuario.nombre, usuario.email);
-    
+
     res.json({
       mensaje: "¡Bienvenido!",
       usuario: { nombre: usuario.nombre, email: usuario.email },
