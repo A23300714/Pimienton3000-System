@@ -100,6 +100,7 @@ app.get("/", (req, res) => {
 
 // ruta api log y reg
 app.post("/api/registrar", async (req, res) => {
+  const { nombre, email } = req.body;
   try {
     const nuevoUsuario = new User(req.body);
     await nuevoUsuario.save();
@@ -110,6 +111,17 @@ app.post("/api/registrar", async (req, res) => {
     }).save();
     res.status(201).json({ mensaje: "Usuario registrado con éxito" });
   } catch (error) {
+    let detalleError = error.message;
+    
+    // error por correo duplicado (
+    if (error.code === 11000) {
+      detalleError = `Intento de registro con correo ya existente: ${email}`;
+    }
+     await new Log({
+      evento: "Error en Registro",
+      descripcion: detalleError,
+      usuario: email || "Desconocido", 
+    }).save();
     res.status(400).json({ error: "Error al registrar: " + error.message });
   }
 });
