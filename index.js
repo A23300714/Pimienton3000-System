@@ -13,14 +13,18 @@ app.use(cors({
 // configuración gmail
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587, 
-  secure: false, 
+  port: 587,
+  secure: false, // TLS
   auth: {
     user: "a23300714@ceti.mx",
     pass: process.env.GMAIL_APP_PASS,
   },
+  connectionTimeout: 10000, // 10 segundos
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
   tls: {
-    rejectUnauthorized: false 
+    rejectUnauthorized: false,
+    minVersion: "TLSv1.2" 
   }
 });
 //enviar correos
