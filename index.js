@@ -12,17 +12,18 @@ app.use(cors({
 }));
 // configuración gmail
 const transporter = nodemailer.createTransport({
-
-  host: "74.125.141.108", 
-  port: 465,
-  secure: true, 
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // false para puerto 587
   auth: {
     user: "jonathangabriel5889@gmail.com",
     pass: process.env.GMAIL_APP_PASS,
   },
-  servername: 'smtp.gmail.com', 
+  connectionTimeout: 10000, 
+  greetingTimeout: 10000,
   tls: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
+    minVersion: "TLSv1.2"
   }
 });
 //enviar correos
