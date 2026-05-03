@@ -1,3 +1,4 @@
+const nodemailer = require("nodemailer");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -9,6 +10,43 @@ app.use(cors({
   origin: '*',
   methods: ['GET', 'POST']
 }));
+// Configuración gmail
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "a23300714@ceti.mx", 
+    pass: process.env.GMAIL_APP_PASS, 
+  },
+});
+//enviar correos
+// Función optimizada para enviar la alerta
+const enviarCorreoLogin = async (nombre, emailDestino) => {
+  try {
+    await transporter.sendMail({
+      from: '"Pimienton 3000 System" <a23300714@ceti.mx>',
+      to: emailDestino,
+      subject: "Alerta de Seguridad: Inicio de Sesion detectado ",
+      html: `
+        <div style="font-family: sans-serif; border: 2px solid #ed6c02; padding: 20px; border-radius: 12px; max-width: 500px;">
+          <h2 style="color: #ed6c02;">Hola ${nombre}</h2>
+          <p>Hemos detectado un nuevo inicio de sesión en tu cuenta de <strong>Pimienton3000</strong>.</p>
+          <div style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">
+            <strong>Usuario:</strong> ${emailDestino}<br>
+            <strong>Plataforma:</strong> Web Online
+          </div>
+          <p style="color: #666; font-size: 0.9em; margin-top: 20px;">
+            Si fuiste tu, ignora este correo. Si no fuiste tu , contactanos.
+          </p>
+          <hr style="border: 0; border-top: 1px solid #eee;">
+          <small style="color: #aaa;">Enviado automáticamente por el Sistema de Logs de Pimienton3000</small>
+        </div>
+      `,
+    });
+    console.log(`Alerta enviada a: ${emailDestino}`);
+  } catch (error) {
+    console.error("Error de Nodemailer:",error);
+  }
+};
 
 // archivos estaticoas para web
 app.use(express.static(__dirname));
@@ -84,12 +122,15 @@ app.post("/api/login", async (req, res) => {
       return res.status(401).json({ error: "Correo o contraseña incorrectos" });
     }
 
-
     await new Log({
       evento: "Inicio de Sesión",
       descripcion: `Acceso exitoso de ${usuario.nombre}`,
       usuario: usuario.email,
     }).save();
+
+    //correo enviado
+    enviarCorreoLogin(usuario.nombre, usuario.email);
+    
     res.json({
       mensaje: "¡Bienvenido!",
       usuario: { nombre: usuario.nombre, email: usuario.email },
