@@ -39,7 +39,7 @@ function actualizarBarra(id, valor) {
     const columna = barra.parentElement.parentElement;
     const textoPorcentaje = columna.querySelector('.percentage');
     
-    const nivel = Math.min(Math.max(valor, 0), 100);
+    const nivel = Math.min(Math.max(valor, -100), 200);
 
     barra.style.height = `${nivel}%`;
     textoPorcentaje.textContent = `${nivel}%`;
