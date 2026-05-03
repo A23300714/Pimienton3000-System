@@ -47,7 +47,7 @@ if (formRegistro) {
                 mostrarMensaje("Cuenta creada", "success");
                 setTimeout(() => window.location.href = "index.html", 2000);
             } else {
-                mostrarMensaje(data.error || "Error al registrar");
+                mostrarMensaje("Usuario ya registrado");
             }
         } catch (err) {
             mostrarMensaje("Error de conexión con el servidor");
