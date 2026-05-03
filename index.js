@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const path = require("path"); // Librería para manejar rutas de archivos
+const path = require("path"); // librería para manejar rutas de archivos
 require("dotenv").config();
 const app = express();
 app.use(express.json());
@@ -10,7 +10,7 @@ app.use(cors({
   origin: '*',
   methods: ['GET', 'POST']
 }));
-// Configuración gmail
+// configuración gmail
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587, 
@@ -24,7 +24,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 //enviar correos
-// Función optimizada para enviar la alerta
 const enviarCorreoLogin = async (nombre, emailDestino) => {
   try {
     await transporter.sendMail({
