@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // TLS
   auth: {
-    user: "a23300714@ceti.mx",
+    user: "jonathangabriel5889@gmail.com",
     pass: process.env.GMAIL_APP_PASS,
   },
   connectionTimeout: 10000, // 10 segundos
@@ -31,7 +31,7 @@ const transporter = nodemailer.createTransport({
 const enviarCorreoLogin = async (nombre, emailDestino) => {
   try {
     await transporter.sendMail({
-      from: '"Pimienton 3000 System" <a23300714@ceti.mx>',
+      from: '"Pimienton 3000 System" <jonathangabriel5889@gmail.com>',
       to: emailDestino,
       subject: "Alerta de Seguridad: Inicio de Sesion detectado ",
       html: `
