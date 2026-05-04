@@ -39,10 +39,14 @@ function actualizarBarra(id, valor) {
     const columna = barra.parentElement.parentElement;
     const textoPorcentaje = columna.querySelector('.percentage');
     
-    const nivel = Math.min(Math.max(valor, -100), 100);
-
+    const nivel = Math.min(Math.max(valor, -1000), 1000);
+if(nivel<=100&& nivel>=0){
     barra.style.height = `${nivel}%`;
     textoPorcentaje.textContent = `${nivel}%`;
+}else{
+     mostrarMensaje("Error en los sensores", "error");
+}
+   
 }
 
 function conectar() {
