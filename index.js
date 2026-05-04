@@ -1,9 +1,9 @@
+require("dotenv").config();
 const nodemailer = require("nodemailer");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path"); // librería para manejar rutas de archivos
-require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(cors({
@@ -19,11 +19,10 @@ const transporter = nodemailer.createTransport({
     user: "jonathangabriel5889@gmail.com",
     pass: process.env.GMAIL_APP_PASS,
   },
-  family: 4, 
-
-  tls: {
+    tls: {
     rejectUnauthorized: false
-  }
+    },
+  family: 4
 });
 //enviar correos
 const enviarCorreoLogin = async (nombre, emailDestino) => {
